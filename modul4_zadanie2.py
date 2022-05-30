@@ -19,45 +19,35 @@ def calculation_choice(number): #Funkcja która wykonuje odpowiednie działanie 
         logging.info(f'Dzielę {first_number} przez {second_number}')
         print(f'Wynik to: {first_number / second_number}')
 
-def choose_again(number): #Funkcja która pozwala na ponowny wybór opcji działania w przypadku wpisania innej liczby niż od 1 do 4
-
-    while number < 1 or number > 4:
-
-        try: #Pętla która wypisuje treść błędu dopóki wpisane dane nie będą odpowiadać wymaganym (float)
-            logging.warning('Wybór nie jest liczbą od 1 do 4, spróbuj ponownie: \n1 Dodawanie, \n2 Odejmowanie, \n3 Mnożenie, \n4 Dzielenie: ')
-            number = int(input('Opcja '))
-        except ValueError:
-            logging.warning('Wybór nie jest liczbą od 1 do 4, spróbuj ponownie')
-
-    return number
-
 if __name__ == '__main__':
 
-    print('Podaj działanie, posługując się odpowiednią liczbą: 1 Dodawanie, 2 Odejmowanie, 3 Mnożenie, 4 Dzielenie: ')
-
     while True:
-        try:
-            choice_number = int(input('Opcja ')) #Wybór opcji działania
-            break;
-        except ValueError:
-            logging.warning('Wybór nie jest liczbą od 1 do 4, spróbuj ponownie')
-            
-    choice_number = choose_again(choice_number)
 
-    while True: #Pętla która wypisuje treść błędu dopóki wpisane dane nie będą odpowiadać wymaganym (float)
-        try:
-            first_number = float(input('Podaj pierwszą liczbę: '))
-            break;
-        except ValueError:
-            logging.warning('Wybór nie jest liczbą, spróbuj ponownie')
+        print('Podaj działanie, posługując się odpowiednią liczbą: 1 Dodawanie, 2 Odejmowanie, 3 Mnożenie, 4 Dzielenie: \nAby wyjść wybierz 5')
 
-    while True: #Pętla która wypisuje treść błędu dopóki wpisane dane nie będą odpowiadać wymaganym (float)
-        try:
-            second_number = float(input('Podaj drugą liczbę: '))
-            break;
-        except ValueError:
-            logging.warning('Wybór nie jest liczbą, spróbuj ponownie')
+        while True:
+            try:
+                choice_number = int(input('Opcja ')) #Wybór opcji działania
 
-    calculation_choice(choice_number)
+                if choice_number <= 4:
+                    break;
+                elif choice_number == 5:
+                    exit()
+                else:
+                    logging.warning('Wybór nie jest liczbą od 1 do 4, spróbuj ponownie: \n1 Dodawanie, \n2 Odejmowanie, \n3 Mnożenie, \n4 Dzielenie: \nAby wyjść wybierz 5')
+
+            except ValueError:
+                logging.warning('Wybór nie jest liczbą od 1 do 4, spróbuj ponownie: \n1 Dodawanie, \n2 Odejmowanie, \n3 Mnożenie, \n4 Dzielenie: \nAby wyjść wybierz 5')
+
+        while True: #Pętla która wypisuje treść błędu dopóki wpisane dane nie będą odpowiadać wymaganym (float)
+            try:
+                first_number = float(input('Podaj pierwszą liczbę: '))
+                second_number = float(input('Podaj drugą liczbę: '))
+                break;
+            except ValueError:
+                logging.warning('Wybór nie jest liczbą, spróbuj ponownie')
+
+        calculation_choice(choice_number)
+        print(choice_number)
     
     
